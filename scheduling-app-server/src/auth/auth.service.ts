@@ -9,14 +9,6 @@ export class AuthService {
         private jwtService: JwtService
     ) { }
 
-    /**getRandomId() {
-        const min = 1;
-        const max = Number.MAX_SAFE_INTEGER;
-
-        return Math.floor(Math.random() * (max - min + 1)) + min;
-    }
-    */
-
     async signIn(username: string, pass: string): Promise<{ access_token: string }> {
         const user = await this.usersService.findByUsername(username);
 
@@ -26,7 +18,7 @@ export class AuthService {
 
         // generate payload, generating random UserID in the process
         const payload = {
-            sub: user._id,
+            sub: user._id.toString(),
             username: user.username
         }
         // process JWT token
