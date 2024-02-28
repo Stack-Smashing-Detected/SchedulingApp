@@ -1,0 +1,22 @@
+Notes for mongodb items collection:
+
+
+Document fields:
+- _id
+- name
+- start_time (time) 
+- end_time (time)
+- days of the week. (array)
+
+Notes for mongodb actions collection:
+- _id
+- name
+- duration
+- 
+
+Notes for users collections:
+- _id
+- username
+- avatarUrl: string;
+
+
