@@ -1,11 +1,11 @@
 import { Injectable } from '@nestjs/common'
 import { InjectModel } from '@nestjs/mongoose';
-import { Model } from 'mongoose';
+import { Model, Document } from 'mongoose';
 import { User } from '../schemas/User.schema';
 import { CreateUserDto } from './dto/CreateUser.dto';
 import { UpdateUserDto } from './dto/UpdateUser.dto';
 
-export type UserDocument = User & Document;
+export interface UserDocument extends User, Document { }
 
 @Injectable()
 export class UsersService {
@@ -16,12 +16,12 @@ export class UsersService {
     }
 
     async findById(id: string): Promise<UserDocument | null> {
-        return this.userModel.findOne({ id }).exec();
+        return this.userModel.findOne({ id }).lean();
     }
 
     // find by username for verifying login. 
     async findByUsername(username: string): Promise<UserDocument | null> {
-        return this.userModel.findOne({ username }).exec()
+        return this.userModel.findOne({ username }).lean();
     }
 
     async createUser(createUserDto: CreateUserDto): Promise<UserDocument> {
