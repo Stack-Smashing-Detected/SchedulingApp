@@ -17,7 +17,7 @@ import { APP_GUARD } from '@nestjs/core';
       useFactory: async (config: ConfigService) => ({
         global: true,
         secret: config.get<string>('JWT_SECRET'),
-        signOptions: { expiresIn: '120s' },
+        signOptions: { expiresIn: '5m' },
       }),
     }),
   ],
