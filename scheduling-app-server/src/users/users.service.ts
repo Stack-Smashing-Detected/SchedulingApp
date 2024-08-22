@@ -4,6 +4,8 @@ import { Model, Document } from 'mongoose';
 import { User } from '../schemas/User.schema';
 import { CreateUserDto } from './dto/CreateUser.dto';
 import { UpdateUserDto } from './dto/UpdateUser.dto';
+import bcrypt from 'bcrypt';
+
 
 export interface UserDocument extends User, Document { }
 
@@ -24,10 +26,18 @@ export class UsersService {
         return this.userModel.findOne({ username }).lean();
     }
 
+    // uses bcrypt hashing on new user password.
     async createUser(createUserDto: CreateUserDto): Promise<UserDocument> {
-        const newUser = new this.userModel(createUserDto);
+        const saltRounds = Number(process.env.SALT_ROUNDS);
+        const salt = await bcrypt.genSalt(saltRounds);
+        const hash = await bcrypt.hash(createUserDto.password, salt);
+
+        const newUser = new this.userModel({
+            ...CreateUserDto,
+            password: hash,
+        })
         return newUser.save();
-    };
+    }
 
     async updateUser(id: string, updateUserDto: UpdateUserDto): Promise<UserDocument> | null {
         return this.userModel.findByIdAndUpdate(id, updateUserDto);

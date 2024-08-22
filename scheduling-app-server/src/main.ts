@@ -3,7 +3,6 @@ import { SwaggerModule, DocumentBuilder } from '@nestjs/swagger';
 import { AppModule } from './app.module';
 import * as dotenv from 'dotenv';
 
-console.log(process.env.MONGODB_CONNECTION_STRING);
 async function bootstrap() {
   dotenv.config();
   const app = await NestFactory.create(AppModule);
