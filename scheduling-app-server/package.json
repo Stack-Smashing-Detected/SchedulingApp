@@ -1,8 +1,8 @@
 {
   "name": "scheduling-app-server",
   "version": "0.0.1",
-  "description": "",
-  "author": "",
+  "description": "Actions have a time value and and count down. Tasks use timestamps and will display in the PWA during their given time period",
+  "author": "Victor John Wilson",
   "private": true,
   "license": "UNLICENSED",
   "scripts": {
@@ -41,7 +41,7 @@
     "rxjs": "^7.8.1"
   },
   "devDependencies": {
-    "@nestjs/cli": "^10.0.0",
+    "@nestjs/cli": "^10.4.9",
     "@nestjs/schematics": "^10.0.0",
     "@nestjs/testing": "^10.0.0",
     "@types/bcrypt": "^5.0.2",
@@ -82,5 +82,20 @@
     ],
     "coverageDirectory": "../coverage",
     "testEnvironment": "node"
-  }
+  },
+  "main": ".eslintrc.js",
+  "directories": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Stack-Smashing-Detected/SchedulingApp.git"
+  },
+  "keywords": [
+    "mongodb"
+  ],
+  "bugs": {
+    "url": "https://github.com/Stack-Smashing-Detected/SchedulingApp/issues"
+  },
+  "homepage": "https://github.com/Stack-Smashing-Detected/SchedulingApp#readme"
 }

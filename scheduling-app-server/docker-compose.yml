@@ -1,31 +1,36 @@
 # docker-compose file creates volumes for the program to use.
-version: '3.8'
 services:
-  activity_tracker_app:
-    build: .
+  nest_js_api:
+    container_name: "scheduling-app-server"
+    restart: unless-stopped
+    build:
+      dockerfile: Dockerfile
     ports:
-      - "3000:3000"
+      - '3000:3000'
     volumes:
-      - ./src:/home/victor-j-wilson/projects2/SchedulingApp/scheduling-app-server
-      
+      - .:/home/victor-j-wilson/projects2/SchedulingApp/scheduling-app-server
     environment:
-      NODE_ENV: dev
-    command: npm run start:dev
-    depends_on:
-      - mongodb
-  
+      NODE_ENV: development
+    
+
   mongodb:
-    image: mongodb/mongodb-community-server:6.0-ubi8
-    restart: always
+    hostname: mongodb
+    image: mongodb/mongodb-atlas-local
     environment:
-      MONGO_INITDB_ROOT_USERNAME: '${DB_USERNAME}'
-      MONGO_INITDB_ROOT_PASSWORD: '${DB_PASSWORD}'
+      MONGODB_INITDB_ROOT_USERNAME: '${DB_USERNAME}'
+      MONGODB_INITDB_ROOT_PASSWORD: '${DB_PASSWORD}'
     ports:
-      - 27018:27017
+      - 27019:27017
+    volumes:
+      - data:/data/db 
+      - config:/data/configdb
 
 volumes:
- data:
- config:
+  data:
+  config:
+
+
+
 
 
 
